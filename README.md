@@ -30,16 +30,7 @@ To configure the module we simply include the output JavaScript file from this m
                 'https://files-manywho-com.s3.amazonaws.com/e5b74eba-b103-4e05-b767-xxxxxxxxxx/ga.js'
             ],
 
-            .......
-            // this allows us to pass in extra values - needed when SSO is enabled to avoid the loss of query params after the sso redirect
-            var options = {
-                   ........
-                    annotations: {
-                        "Blob": queryParameters['Blob'] != null ? queryParameters['Blob'] : 'Flow needs a Blob',
-                        "FlowId": queryParameters['flow-id'] != null ? queryParameters['flow-id'] : 'Flow needs a flow id',
-                    },
-                    ..........
-                };
+            
 .....
 
 </script>
