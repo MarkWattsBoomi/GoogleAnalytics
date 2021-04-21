@@ -1,0 +1,50 @@
+{
+  "name": "analytics",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react-ga": "^3.3.0"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "css-loader": "^3.3.2",
+    "source-map-loader": "^0.2.4",
+    "style-loader": "^0.23.1",
+    "typescript": "^3.7.3",
+    "webpack": "^4.41.3",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.11.0",
+    "write-file-webpack-plugin": "4.4.1"
+  },
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack -p --config webpack.production.config.js",
+    "debug": "react-scripts start",
+    "buildxx": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "ngrok": "ngrok http --host-header=rewrite 8080",
+    "ngrok2": "ngrok http -region=eu --host-header=rewrite 1080"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "flow": {
+    "filenames": {
+      "js": "ga.js"
+    }
+  }
+}
