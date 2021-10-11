@@ -83,7 +83,7 @@ export default class Audit {
     
     debug(message: any) {
         if(analytics.debug === true) {
-            //console.log(message);
+            console.log(message);
         }
     }
 
@@ -111,14 +111,18 @@ export default class Audit {
                 // if not call flow rest api to get the user state value
                 let uxhr: any = await Services.getUser(this.tenantId, this.stateId);
                 // use the User class to parse the returned value
-                this.user = User.parseModel(uxhr.objectData[0]);
+                if(uxhr){
+                    this.user = User.parseModel(uxhr.objectData[0]);
+                }
             }
 
             // make sure we know the root / parent flow
             if((this.parentFlow === undefined) && (this.stateId) && (this.model) && (this.model.parentFlowId)) {
                 //if we don't have parent flow details then get them
                 let pxhr: any = await Services.getFlowDetails(this.tenantId, this.stateId, this.model.parentFlowId);
-                this.parentFlow = RootFlow.parseResponseXHR(pxhr);
+                if(pxhr){
+                    this.parentFlow = RootFlow.parseResponseXHR(pxhr);
+                }
             }
 
         }

@@ -7,6 +7,9 @@ export default class Services {
 
     // generic request util to hit the flow API and return the JSON output 
     static async callRequest(tenantId: string, stateId: string, url: string, method: string, data: any): Promise<any> {
+        if(!tenantId){
+            return;
+        }
         let results: any;
         const request: RequestInit = {};
         let flowKey: string = manywho.utils.getFlowKey(tenantId, "","",stateId);
@@ -25,15 +28,20 @@ export default class Services {
         if(method === "POST" || method === "PUT") {
             request.body = JSON.stringify(data);
         }
-            
-        let response = await fetch(url, request);
-        //let body: string =  await this.getResultBodyTextxx(response);
-        if(response.status === 200) {
-            results = await response.json();
+        
+        try{
+            let response = await fetch(url, request);
+            //let body: string =  await this.getResultBodyTextxx(response);
+            if(response.status === 200) {
+                results = await response.json();
+            }
+            else {
+                const errorText = await response.text();
+                console.log("Fetch Failed - " + errorText);
+            }
         }
-        else {
-            const errorText = await response.text();
-            console.log("Fetch Failed - " + errorText);
+        catch(e){
+
         }
 
         return results;
