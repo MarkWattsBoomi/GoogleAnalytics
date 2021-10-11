@@ -81,13 +81,13 @@ export default class Audit {
     }
 
     
-    debug(message: string) {
+    debug(message: any) {
         if(analytics.debug === true) {
-            console.log(message);
+            //console.log(message);
         }
     }
 
-    error(message: string) {
+    error(message: any) {
         console.log(message);
         alert(message);
     }
@@ -123,7 +123,7 @@ export default class Audit {
 
         }
         catch(e) {
-            this.debug(e);
+            this.error(e);
         }
         finally{
         }      
@@ -163,7 +163,7 @@ export default class Audit {
             }
         }
         catch(e) {
-            this.debug(e);
+            this.error(e);
         }
         finally{
         }
@@ -193,7 +193,7 @@ export default class Audit {
             }
         }
         catch(e) {
-            this.debug(e);
+            this.error(e);
         }
         finally{
         }
@@ -256,7 +256,7 @@ export default class Audit {
                 }
             }
             catch(e) {
-                this.debug(e);
+                this.error(e);
             }
             finally {
 
@@ -374,8 +374,8 @@ var manywho = {
         'https://files-manywho-com.s3.amazonaws.com/e5b74eba-b103-4e05-b767-cdc2ab679116/audit.js' // !!!!!!! This includes the component
     ],
 */
-
+let tenant: string = analytics.tenantId;
 (manywho as any).audit_trail = new Audit(
-    window.location.pathname.split('/').filter(function (path) {return path && path.length > 0;})[0],
+    tenant,
     manywho.utils.parseQueryString(window.location.search.substring(1))
     );
